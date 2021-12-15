@@ -1,30 +1,22 @@
 var oElectron = require('electron');
 var oElectronApp = oElectron.app;
-var oMenu = oElectron.Menu;
-var oMenuItem = oElectron.MenuItem;
-var oBrowserWindow = null;
-
-var aTemplateMenu = require('./electron/templateMenu.js').a;
+var oElectronMenu = oElectron.Menu;
 var oSettings = require('./electron/settings.js');
 var sPath = __dirname + '/web/index.html';
+var oBrowserWindow = null;
 
 // Menu
-var oApplicationMenu = oMenu.buildFromTemplate(aTemplateMenu);
+var oMenu = oElectronMenu.buildFromTemplate(oSettings.getTemplateMenu());
 
 // Context Menu
-var ctxMenu = new oMenu();
-ctxMenu.append(new oMenuItem({label: 'Hello World'}));
-ctxMenu.append(new oMenuItem({type: 'separator'}));
-ctxMenu.append(new oMenuItem({role: 'cut'}));
-ctxMenu.append(new oMenuItem({role: 'copy'}));
-ctxMenu.append(new oMenuItem({role: 'paste'}));
+var oContextMenu = oElectronMenu.buildFromTemplate(oSettings.getTemplateContextMenu());
 
 // App
-oElectronApp.on('ready', function(){
+oElectronApp.on('ready', () => {
   oBrowserWindow = oSettings.getBrowserWindow(sPath);
-  oMenu.setApplicationMenu(oApplicationMenu);
-  oBrowserWindow.webContents.on('context-menu', function(e, params){
-    ctxMenu.popup(oBrowserWindow, params.x, params.y);
+  oElectronMenu.setApplicationMenu(oMenu);
+  oBrowserWindow.webContents.on('context-menu', (e, params) => {
+    oContextMenu.popup(oBrowserWindow, params.x, params.y);
   });
 });
 oElectronApp.on('window-all-closed', () => {
