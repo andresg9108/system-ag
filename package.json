@@ -1,5 +1,5 @@
 {
-  "name": "system-ag",
+  "name": "SystemAG",
   "version": "0.1.0",
   "electronVersion": "0.1.0",
   "main": "./main.js",
@@ -48,7 +48,7 @@
   "email": "",
   "keywords": [],
   "build": {
-    "appId": "andresg9108.sysfrontend.app",
+    "appId": "andresg9108.system-ag.app",
     "asar": true,
     "dmg": {
       "contents": [
