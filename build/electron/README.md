@@ -22,6 +22,12 @@ oBrowserWindow.webContents.openDevTools();
 npm run prepare
 ~~~
 
+6. Eliminamos la carpeta “node_modules” y ejecutamos el siguiente comando que se encargará de cargar esta misma carpeta pero solo con las dependencias de producción. 
+
+~~~
+npm i --production
+~~~
+
 6. En la raíz del proyecto nos quedamos con siguientes archivos.
 
 * main.js
