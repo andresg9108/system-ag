@@ -7,7 +7,7 @@ oApp.http = require('http');
 oApp.app = oApp.express();
 oApp.server = oApp.http.Server(oApp.app);
 
-oApp.whatsappView = require('../sys-express/module/view/whatsapp.js');
+oApp.whatsappView = require('./module/view/whatsapp.js');
 
 oApp.setPath = (sPath) => {
 	oApp.path = sPath;

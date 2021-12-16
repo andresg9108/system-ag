@@ -3,7 +3,7 @@ var oApp = {};
 oApp.path = '';
 oApp.BrowserWindow = null;
 oApp.electron = require('electron');
-oApp.sysElectronSettings = require('../sys-electron/settings.js');
+oApp.sysElectronSettings = require('./settings.js');
 
 oApp.setPath = (sPath) => {
 	oApp.path = sPath;
