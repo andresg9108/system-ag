@@ -39,7 +39,8 @@ npm i --production
 * web/
 * src/
 * node_modules/
-* electron/
+* sys-electron/
+* sys-express/
 * electron-builder/
 
 8. También borraremos "src/sass" y dentro de "src/js" y "src/template" solo quedará la carpeta "dist".
