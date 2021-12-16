@@ -1,4 +1,3 @@
 exports.a=[
-'./src/template/*',
-'./src/template/widget/users/*'
+'./src/template/widget/messagewarning/*',
 ];

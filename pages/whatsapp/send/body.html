@@ -1,0 +1,37 @@
+<div class="my-simple-container">
+
+  <h1><span class="fab fa-whatsapp fa-1x"></span> Enviar</h1>
+
+  <div class="my-keypad">
+    <button onclick="oAppMain.goTo('whatsapp', '')" class="my-button-only-icon my-button-simple">
+      <span class="fas fa-backspace fa-1x"></span>
+    </button>
+    <button onclick="oAppMain.goTo_w('https://t.me/andresg9108Bot')" class="my-button-only-icon my-button-simple">
+      <span class="fas fa-robot fa-1x"></span>
+    </button>
+  </div>
+
+  <div id="message" data-template="true"></div>
+
+  <form id="sendForm" name="sendForm" method="post" onsubmit="return oApp.send(this)">
+    <div class="my-field my-field-column">
+      <label for="number">N&uacute;mero:</label>
+      <input type="text" class="my-text" id="number" name="number" placeholder="N&uacute;mero" />
+      <span id="errnumber"></span>
+    </div>
+
+    <div class="my-field my-field-column">
+      <label for="message">Mensaje:</label>
+      <textarea id="message" name="message" placeholder="Mensaje" class="my-textarea"></textarea>
+      <span id="errmessage"></span>
+    </div>
+
+    <div class="my-keypad">
+      <button id="btnsend" type="submit" class="my-button-icon my-button-simple">
+        <span class="fas fa-file-import fa-1x"></span>
+        Enviar
+      </button>
+    </div>
+  </form>
+
+</div>
