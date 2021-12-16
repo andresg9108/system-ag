@@ -22,19 +22,13 @@ oBrowserWindow.webContents.openDevTools();
 npm run prepare
 ~~~
 
-6. Eliminamos el directorio "node_modules" y ejecutamos el siguiente comando que cargará este mismo directorio pero solo con las dependencias de producción.
-
-~~~
-npm i --production
-~~~
-
-7. En la raíz del proyecto nos quedamos con siguientes archivos.
+6. En la raíz del proyecto nos quedamos con siguientes archivos.
 
 * main.js
 * package.json
 * package-lock.json"
 
-8. En cuanto a los directorios nos quedaremos con los siguientes. 
+7. En cuanto a los directorios nos quedaremos con los siguientes. 
 
 * web/
 * src/
@@ -42,9 +36,9 @@ npm i --production
 * electron/
 * electron-builder/
 
-9. También borraremos "src/sass" y dentro de "src/js" y "src/template" solo quedará la carpeta "dist".
+8. También borraremos "src/sass" y dentro de "src/js" y "src/template" solo quedará la carpeta "dist".
 
-10. Con esto ahora podemos ejecutar el siguiente comando que creará una carpeta llamada dist y que contendrá los archivos de producción de nuestro proyecto.
+9. Con esto ahora podemos ejecutar el siguiente comando que creará una carpeta llamada dist y que contendrá los archivos de producción de nuestro proyecto.
 
 ~~~
 npm run dist
