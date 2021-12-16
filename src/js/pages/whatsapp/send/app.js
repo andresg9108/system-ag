@@ -3,6 +3,19 @@
 var oApp = {};
 
 $(function(){
+    let oAjax = {
+        url: 'http://localhost:65000/whatsapp/test',
+        type: 'get',
+        data: {}
+    }
+    $.ajax(oAjax)
+    .then(function(oResponse){
+        console.log(oResponse.test);
+    })
+    .catch(function(e){
+        console.log('Error.');
+        console.log(e);
+    });
 });
 
 /*
