@@ -1,27 +1,19 @@
 "use strict";
 
-var oApp = {};
-
-$(function(){
-    let oAjax = {
-        url: 'http://localhost:65000/whatsapp/test',
-        type: 'get',
-        data: {}
-    }
-    $.ajax(oAjax)
-    .then(function(oResponse){
-        console.log(oResponse.test);
-    })
-    .catch(function(e){
-        console.log('Error.');
-        console.log(e);
-    });
-});
+var oSend = {};
 
 /*
 */
-oApp.send = function(form){
-    if(oApp.validateSend()){
+oSend.goBack = function(){
+	oAppMain.goTo('modules/whatsapp', '');
+}
+
+/*
+*/
+oSend.send = function(form){
+    console.log('Send');
+
+	if(oSend.validateSend()){
 		oAppMain.disableButton("#sendForm #btnsend", true);
 
         var sNumber = form.number.value;
@@ -43,8 +35,8 @@ oApp.send = function(form){
 
 /*
 */
-oApp.validateSend = function(){
-    var sText = '';
+oSend.validateSend = function(){
+	var sText = '';
 
     sText = oMessageMain.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #number', '#sendForm #errnumber', sText)){return false;}
@@ -52,4 +44,11 @@ oApp.validateSend = function(){
     if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}
 
     return true;
+}
+
+/*
+*/
+oSend.setView = function(){
+    var oData = {};
+    oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData);
 }

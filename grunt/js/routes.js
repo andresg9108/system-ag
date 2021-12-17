@@ -1,5 +1,5 @@
 exports.a=[
 './src/js/*',
-'./src/js/pages/whatsapp/send/*',
+'./src/js/modules/whatsapp/*',
 './src/js/widget/messagewarning/*'
 ];

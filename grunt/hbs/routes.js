@@ -1,3 +1,4 @@
 exports.a=[
-'./src/template/widget/messagewarning/*',
+'./src/template/modules/whatsapp/*',
+'./src/template/widget/messagewarning/*'
 ];

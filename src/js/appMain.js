@@ -61,6 +61,14 @@ oAppMain.goTo_w_app = function(sUrl){
   }
 }
 
+/*
+*/
+oAppMain.getParameterByName = function(sName){
+    sName = sName.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + sName + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 /*
 */

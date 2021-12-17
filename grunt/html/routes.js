@@ -1,6 +1,5 @@
 exports.a=[
 './pages/*',
-'./pages/whatsapp/*',
-'./pages/whatsapp/send/*',
+'./pages/modules/whatsapp/*',
 './pageTemplates/*'
 ];
