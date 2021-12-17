@@ -11,6 +11,9 @@ $(function(){
 		case 'send':
 			oSend.setView();
 			break;
+		case 'templates':
+			oTemplates.setView();
+			break;
 		default:
 	  		oMenu.setView();
 	    	break;

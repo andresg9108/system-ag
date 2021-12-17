@@ -7,8 +7,8 @@ oApp.setApp = (Application) => {
 }
 
 oApp.run = () => {
-	oApp.app.get('/whatsapp/test', (req, res) => {
-		res.send({'test': '¡Hello World!'});
+	oApp.app.get('/whatsapp/templates', (req, res) => {
+		res.send(req.query);
 	});
 }
 

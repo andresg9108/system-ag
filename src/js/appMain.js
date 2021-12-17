@@ -1,5 +1,8 @@
 "use strict";
 
+var g_sPort = '65000'
+var g_sBackEnd = `http://localhost:${g_sPort}/`;
+
 var g_iIdLanguage = 1; // English = 0, Spanish = 1
 var g_sRouteTemplate = 'src/template/';
 var g_iApp = 2; // 0: Web; 1: Android; 2: Electron;
