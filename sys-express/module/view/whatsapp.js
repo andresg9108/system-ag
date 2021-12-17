@@ -1,15 +1,16 @@
 var oApp = {};
 
+oApp.whatsappController = require('../controller/whatsapp.js');
 oApp.app = {};
-
-oApp.setApp = (Application) => {
-	oApp.app = Application;
-}
 
 oApp.run = () => {
 	oApp.app.get('/whatsapp/templates', (req, res) => {
-		res.send(req.query);
+		res.send(oApp.whatsappController.getTemplates(req.query));
 	});
+}
+
+oApp.setApp = (Application) => {
+	oApp.app = Application;
 }
 
 exports.setApp = oApp.setApp;
