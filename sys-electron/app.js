@@ -4,6 +4,8 @@ oApp.path = '';
 oApp.BrowserWindow = null;
 oApp.electron = require('electron');
 oApp.sysElectronSettings = require('./settings.js');
+oApp.sysElectronTemplateContextMenu = require('./default/templateContextMenu.js');
+oApp.sysElectronTemplateMenu = require('./default/templateMenu.js');
 
 oApp.setPath = (sPath) => {
 	oApp.path = sPath;
@@ -11,10 +13,10 @@ oApp.setPath = (sPath) => {
 
 oApp.run = () => {
 	// Menu
-	var oMenu = oApp.electron.Menu.buildFromTemplate(oApp.sysElectronSettings.getTemplateMenu());
+	var oMenu = oApp.electron.Menu.buildFromTemplate(oApp.sysElectronTemplateMenu.getTemplateMenu());
 
 	// Context Menu
-	var oContextMenu = oApp.electron.Menu.buildFromTemplate(oApp.sysElectronSettings.getTemplateContextMenu());
+	var oContextMenu = oApp.electron.Menu.buildFromTemplate(oApp.sysElectronTemplateContextMenu.getTemplateContextMenu());
 
 	// App
 	oApp.electron.app.on('ready', () => {

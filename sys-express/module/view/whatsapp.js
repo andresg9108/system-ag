@@ -1,6 +1,6 @@
 var oApp = {};
 
-oApp.whatsappController = require('../controller/whatsapp.js');
+oApp.whatsappController = require('../controller/whatsapp/app.js');
 oApp.app = {};
 
 oApp.run = () => {
