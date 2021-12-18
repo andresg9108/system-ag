@@ -14,18 +14,22 @@ oTemplates.setView = function(){
     let oAjax = {
         url: `${g_sBackEnd}whatsapp/templates`,
         type: 'get',
-        data: {
-            test: '¡Hello World!'
-        }
+        data: {}
     }
     $.ajax(oAjax)
     .then(function(oResponse){
-        console.log(oResponse);
+        if(oResponse.status){
+            oResponse = oResponse.response;
+            let aDirs = oResponse.dirs;
+            
+            var oData = {
+                dirs: aDirs
+            };
+            oAppMain.loadTemplate('modules/whatsapp/templates', '#moduleBody', oData);
+        }else{
+        }
     })
     .catch(function(e){
         // console.log(e);
     });
-
-    var oData = {};
-    oAppMain.loadTemplate('modules/whatsapp/templates', '#moduleBody', oData);
 }
