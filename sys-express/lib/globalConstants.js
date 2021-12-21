@@ -11,9 +11,11 @@ oApp.constants = {
 
 };
 
-oApp.getConstant = (sName) => {
+oApp.getConstant = (sName, aParameters = []) => {
 	let oSettings = oApp.settings.getSettings();
-	return oApp.constants[sName][oSettings.language_id];
+	let sConstant = oApp.constants[sName][oSettings.language_id];
+
+	return sConstant;
 }
 
 exports.getConstant = oApp.getConstant;

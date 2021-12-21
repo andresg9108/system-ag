@@ -37,7 +37,7 @@ oApp.services = () => {
 	});
 
 	oApp.whatsappView.setApp(oApp.app);
-	oApp.whatsappView.run();
+	oApp.whatsappView.load();
 }
 
 exports.setPath = oApp.setPath;
