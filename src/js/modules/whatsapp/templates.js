@@ -18,7 +18,7 @@ oTemplates.setView = function(){
     }
     $.ajax(oAjax)
     .then(function(oResponse){
-        if(oResponse.status){
+        if(oResponse.status == 1){
             oResponse = oResponse.response;
             
             let oData = {

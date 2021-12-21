@@ -3,9 +3,10 @@ var oApp = {};
 oApp.path = '';
 oApp.port = 65000;
 oApp.express = require('express');
+oApp.bodyParser = require('body-parser');
 oApp.http = require('http');
-oApp.app = oApp.express();
-oApp.server = oApp.http.Server(oApp.app);
+
+oApp.app = {};
 
 oApp.whatsappView = require('./module/view/whatsapp.js');
 
@@ -14,10 +15,11 @@ oApp.setPath = (sPath) => {
 }
 
 oApp.run = () => {
-	// oApp.app.use(oApp.express.static(oApp.path + '/web'));
-	// oApp.app.use('/jquery', oApp.express.static(oApp.path + '/node_modules/jquery/dist/'));
-
-	oApp.server.listen(oApp.port, () => {
+	oApp.app = oApp.express();
+	oApp.app.use(oApp.bodyParser.urlencoded({extended:true}));
+	
+	let oServer = oApp.http.Server(oApp.app);
+	oServer.listen(oApp.port, () => {
 		console.log('Port: ' + oApp.port);
 	});
 }

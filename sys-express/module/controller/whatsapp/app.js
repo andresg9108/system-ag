@@ -1,11 +1,12 @@
 var oApp = {};
 
-oApp.fs = require('fs');
 oApp.useful = require('../../../lib/useful.js');
 oApp.globalConstants = require('../../../lib/globalConstants.js');
 oApp.constants = require('./constants.js');
 
-oApp.getTemplates = (oQuery) => {
+/*
+*/
+oApp.create = (oRequest) => {
 	let oResponse = {};
 
 	try{
@@ -13,16 +14,41 @@ oApp.getTemplates = (oQuery) => {
 		let sPathWhatsappTemplates = 'whatsapp/templates';
 
 		sPath = `${sPath}${sPathWhatsappTemplates}`;
-		if(!oApp.fs.existsSync(sPath)){ oApp.fs.mkdirSync(sPath, {recursive:true}); }
+		oApp.useful.createRoute(sPath);
 
-		return oApp.useful.getResponse(true, oResponse, 
-			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'),
+		let sName = oRequest.name;
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.constants.getConstant('CREATED_SUCCESSFULLY', [sName]),
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
 	}catch(error){
-		return oApp.useful.getResponse(false, oResponse, 
+		return oApp.useful.getResponse(2, oResponse, 
 			error,
 			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
 	}
 }
 
+/*
+*/
+oApp.getTemplates = (oRequest) => {
+	let oResponse = {};
+
+	try{
+		let sPath = oApp.useful.getPath();
+		let sPathWhatsappTemplates = 'whatsapp/templates';
+
+		sPath = `${sPath}${sPathWhatsappTemplates}`;
+		oApp.useful.createRoute(sPath);
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'),
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
+	}catch(error){
+		return oApp.useful.getResponse(2, oResponse, 
+			error,
+			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
+	}
+}
+
+exports.create = oApp.create;
 exports.getTemplates = oApp.getTemplates;

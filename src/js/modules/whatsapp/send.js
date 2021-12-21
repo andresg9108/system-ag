@@ -36,9 +36,9 @@ oSend.send = function(form){
 oSend.validateSend = function(){
 	let sText = '';
 
-    sText = oMessageMain.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
+    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #number', '#sendForm #errnumber', sText)){return false;}
-    sText = oMessageMain.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
+    sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}
 
     return true;
