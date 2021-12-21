@@ -20,10 +20,8 @@ oTemplates.setView = function(){
     .then(function(oResponse){
         if(oResponse.status){
             oResponse = oResponse.response;
-            let aDirs = oResponse.dirs;
             
-            var oData = {
-                dirs: aDirs
+            let oData = {
             };
             oAppMain.loadTemplate('modules/whatsapp/templates', '#moduleBody', oData);
         }else{

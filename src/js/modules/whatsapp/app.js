@@ -5,9 +5,12 @@ var oApp = {};
 $(function(){
 	oMessagewarningWidget.loadMessage('#message');
 
-	var sPage = oAppMain.getParameterByName('p');
+	let sPage = oAppMain.getParameterByName('p');
 
 	switch (sPage) {
+		case 'create':
+			oCreate.setView();
+			break;
 		case 'send':
 			oSend.setView();
 			break;

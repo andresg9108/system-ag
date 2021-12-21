@@ -11,6 +11,6 @@ oMenu.goBack = function(){
 /*
 */
 oMenu.setView = function(){
-  var oData = {};
+  let oData = {};
   oAppMain.loadTemplate('modules/whatsapp/menu', '#moduleBody', oData);
 }

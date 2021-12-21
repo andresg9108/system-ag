@@ -1,17 +1,17 @@
 "use strict";
 
-var oSend = {};
+var oCreate = {};
 
 /*
 */
-oSend.goBack = function(){
+oCreate.goBack = function(){
 	oAppMain.goTo('modules/whatsapp', '');
 }
 
 /*
 */
-oSend.send = function(form){
-	if(oSend.validateSend()){
+oCreate.create = function(form){
+	/*if(oCreate.validateSend()){
 		oAppMain.disableButton("#sendForm #btnsend", true);
 
         let sNumber = form.number.value;
@@ -26,27 +26,27 @@ oSend.send = function(form){
         oAppMain.disableButton("#sendForm #btnsend", false);
         oMessagewarningWidget.setMessage(oMessage.MESSAGE_SENT[g_iIdLanguage], 1);
         oMessagewarningWidget.loadMessage('#message');
-	}
+	}*/
 
 	return false;
 }
 
 /*
 */
-oSend.validateSend = function(){
+oCreate.validateSend = function(){
 	let sText = '';
 
-    sText = oMessageMain.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
+    /*sText = oMessageMain.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #number', '#sendForm #errnumber', sText)){return false;}
     sText = oMessageMain.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}
+    if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}*/
 
     return true;
 }
 
 /*
 */
-oSend.setView = function(){
+oCreate.setView = function(){
     let oData = {};
-    oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData);
+    oAppMain.loadTemplate('modules/whatsapp/create', '#moduleBody', oData);
 }
