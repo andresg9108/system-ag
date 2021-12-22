@@ -15,13 +15,14 @@ oApp.create = (oRequest) => {
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
 
-		let oTemplates = {
-			name: sName,
-			number: sNumber,
-			message: sMessage
-		}
+		let oTemplate = oApp.jsonTemplates.getTemplateStructure();
+		oTemplate.name = sName;
+		oTemplate.number = sNumber;
+		oTemplate.message = sMessage;
 
-		oApp.jsonTemplates.load(oTemplates);
+		oApp.jsonTemplates.open();
+		oApp.jsonTemplates.setTemplate(oTemplate);
+		oApp.jsonTemplates.save();
 
 		return oApp.useful.getResponse(1, oResponse, 
 			oApp.constants.getConstant('CREATED_SUCCESSFULLY', [sName]),
