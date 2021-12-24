@@ -1,9 +1,10 @@
 var oApp = {};
 
+oApp.fs = require('fs');
 oApp.useful = require('../../../lib/useful.js');
 oApp.globalConstants = require('../../../lib/globalConstants.js');
-oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
 oApp.constants = require('./constants.js');
+oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
 
 /*
 */
@@ -15,12 +16,28 @@ oApp.create = (oRequest) => {
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
 
+		let sPathWhatsappTemp = 'whatsapp/templates/';
+		let sPath = oApp.useful.getPath();
+		let sFile = sName;
+
+		sMessage = decodeURIComponent(sMessage);
+		sFile = sFile.replace(/[^a-zA-Z0-9áéíóúü ]/g, '');
+		sFile = sFile.trim();
+		
+		sPath = `${sPath}${sPathWhatsappTemp}`;
+		oApp.useful.createRoute(sPath);
+
+		oApp.jsonTemplates.open();
+
+		let iTemplatesCount = oApp.jsonTemplates.getTemplatesCount() + 1;
+		sFile = `${iTemplatesCount}- ${sFile}.hbs`;
+		oApp.fs.writeFileSync(`${sPath}${sFile}`, sMessage, 'utf-8');
+
 		let oTemplate = oApp.jsonTemplates.getTemplateStructure();
 		oTemplate.name = sName;
 		oTemplate.number = sNumber;
-		oTemplate.message = sMessage;
+		oTemplate.templatepath = `${sPathWhatsappTemp}${sFile}`;
 
-		oApp.jsonTemplates.open();
 		oApp.jsonTemplates.setTemplate(oTemplate);
 		oApp.jsonTemplates.save();
 
@@ -41,12 +58,6 @@ oApp.getTemplates = (oRequest) => {
 	let oResponse = {};
 
 	try{
-		let sPath = oApp.useful.getPath();
-		let sPathWhatsappTemplates = 'whatsapp/templates';
-
-		sPath = `${sPath}${sPathWhatsappTemplates}`;
-		oApp.useful.createRoute(sPath);
-
 		return oApp.useful.getResponse(1, oResponse, 
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'),
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
