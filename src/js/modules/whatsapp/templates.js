@@ -14,20 +14,22 @@ oTemplates.setView = function(){
     let oAjax = {
         url: `${g_sBackEnd}whatsapp/templates`,
         type: 'get',
-        data: {}
+        data: {
+            id: 0
+        }
     }
     $.ajax(oAjax)
     .then(function(oResponse){
         if(oResponse.status == 1){
-            oResponse = oResponse.response;
-            
+            let oResp = oResponse.response;
+            let aTemplates = oResp.templates;
+
             let oData = {
+                templates: aTemplates
             };
             oAppMain.loadTemplate('modules/whatsapp/templates', '#moduleBody', oData);
-        }else{
         }
     })
     .catch(function(e){
-        // console.log(e);
     });
 }

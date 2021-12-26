@@ -58,6 +58,16 @@ oApp.getTemplates = (oRequest) => {
 	let oResponse = {};
 
 	try{
+		let iId = parseInt(oRequest.id, 10);
+
+		oApp.jsonTemplates.open();
+
+		if(iId == 0){
+			oResponse.templates = oApp.jsonTemplates.getTemplates();
+		}else{
+			oResponse.template = oApp.jsonTemplates.getTemplateById(iId);
+		}
+
 		return oApp.useful.getResponse(1, oResponse, 
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'),
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));

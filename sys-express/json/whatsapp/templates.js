@@ -13,13 +13,14 @@ oApp.object = {
 oApp.template = {
 	name: '',
 	number: '',
-	templatepath: ''
+	templatepath: '',
+	template_id: null
 }
 
 /*
 */
 oApp.setTemplate = (oTemplate) => {
-	oTemplate.templates_id = oApp.object.templates.length+1;
+	oTemplate.template_id = oApp.object.templates.length+1;
 	oApp.object.templates.push(oTemplate);
 }
 
@@ -33,6 +34,30 @@ oApp.getTemplateStructure = () => {
 */
 oApp.getTemplatesCount = () => {
 	return oApp.object.templates.length;
+}
+
+/*
+*/
+oApp.getTemplates = () => {
+	return oApp.object.templates;
+}
+
+/*
+*/
+oApp.getTemplateById = (iId) => {
+	let bExit = false;
+	let oTemplate = {};
+
+	let i = 0;
+	while(i < oApp.object.templates.length && !bExit){
+		if(iId == oApp.object.templates[i].template_id){
+			oTemplate = oApp.object.templates[i];
+			bExit = true;6
+		}
+		i++;
+	}
+
+	return oTemplate;
 }
 
 /*
@@ -60,5 +85,7 @@ oApp.save = () => {
 exports.setTemplate = oApp.setTemplate;
 exports.getTemplateStructure = oApp.getTemplateStructure;
 exports.getTemplatesCount = oApp.getTemplatesCount;
+exports.getTemplates = oApp.getTemplates;
+exports.getTemplateById = oApp.getTemplateById;
 exports.open = oApp.open;
 exports.save = oApp.save;
