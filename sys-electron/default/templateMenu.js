@@ -55,6 +55,12 @@ oApp.templateMenu = [
 					oApp.electron.shell.openExternal('https://twitter.com/andresg9108');
 				}
 			},
+			{
+				"label": "Telegram",
+				"click": () => {
+					oApp.electron.shell.openExternal('https://t.me/andresg9108Bot');
+				}
+			},
 			{"type": "separator"},
 			{
 				"label": "Proyectos",
@@ -69,6 +75,42 @@ oApp.templateMenu = [
 						"label": "Proyecto OneP",
 						"click": () => {
 							oApp.electron.shell.openExternal('https://github.com/andresg9108/onep');
+						}
+					},
+					{
+						"label": "Proyecto MyDesign",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/mydesign');
+						}
+					},
+					{
+						"label": "Proyecto JsonPHP",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/jsonphp');
+						}
+					},
+					{
+						"label": "Proyecto grunt-contrib-processpy",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/grunt-contrib-processpy');
+						}
+					},
+					{
+						"label": "Proyecto Processpy",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/processpy');
+						}
+					},
+					{
+						"label": "Proyecto SmartTable",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/smarttable');
+						}
+					},
+					{
+						"label": "Proyecto Connectiondb",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://github.com/andresg9108/connectiondb');
 						}
 					}
 				]
@@ -110,6 +152,71 @@ oApp.templateMenu = [
 						"label": "Twitch",
 						"click": () => {
 							oApp.electron.shell.openExternal('https://www.twitch.tv/andresg9108');
+						}
+					},
+					{"type": "separator"},
+					{
+						"label": "Desarrollador",
+						"submenu": [
+							{
+								"label": "NPM",
+								"click": () => {
+									oApp.electron.shell.openExternal('https://www.npmjs.com/~andresg9108');
+								}
+							},
+							{
+								"label": "GitHub",
+								"click": () => {
+									oApp.electron.shell.openExternal('https://github.com/andresg9108');
+								}
+							}
+						]
+					},
+					{
+						"label": "Ajedrez",
+						"submenu": [
+							{
+								"label": "Chess.com",
+								"click": () => {
+									oApp.electron.shell.openExternal('https://www.chess.com/member/andresg9108');
+								}
+							},
+							{
+								"label": "LiChess",
+								"click": () => {
+									oApp.electron.shell.openExternal('https://lichess.org/@/andresg9108');
+								}
+							},
+							{
+								"label": "Chess24",
+								"click": () => {
+									oApp.electron.shell.openExternal('https://chess24.com/es/profile/andresg9108');
+								}
+							}
+						]
+					}
+				]
+			},
+			{"type": "separator"},
+			{
+				"label": "Contáctame",
+				"click": () => {
+					oApp.electron.shell.openExternal('https://docs.google.com/forms/d/e/1FAIpQLSdZmOOVGexj5cMxL4lNnGTfnVAcRdFB9etqourAa4mGpVaFgg/viewform');
+				}
+			},
+			{
+				"label": "Más",
+				"submenu": [
+					{
+						"label": "Videos épicos",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://bit.ly/VideosEpicos');
+						}
+					},
+					{
+						"label": "Lista de reproducción",
+						"click": () => {
+							oApp.electron.shell.openExternal('https://open.spotify.com/playlist/5iSExi7MigbsVUUnMZGCoD');
 						}
 					}
 				]
