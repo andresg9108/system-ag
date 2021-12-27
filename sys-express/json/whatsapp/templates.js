@@ -7,6 +7,7 @@ oApp.path = '';
 oApp.file = '';
 
 oApp.object = {
+	template_insert_id: null,
 	templates: []
 }
 
@@ -21,7 +22,14 @@ oApp.template = {
 */
 oApp.setTemplate = (oTemplate) => {
 	oTemplate.template_id = oApp.object.templates.length+1;
+	oApp.object.template_insert_id = oTemplate.template_id;
 	oApp.object.templates.push(oTemplate);
+}
+
+/*
+*/
+oApp.getTemplateInsertId = () => {
+	return oApp.object.template_insert_id;
 }
 
 /*
@@ -83,6 +91,7 @@ oApp.save = () => {
 }
 
 exports.setTemplate = oApp.setTemplate;
+exports.getTemplateInsertId = oApp.getTemplateInsertId;
 exports.getTemplateStructure = oApp.getTemplateStructure;
 exports.getTemplatesCount = oApp.getTemplatesCount;
 exports.getTemplates = oApp.getTemplates;

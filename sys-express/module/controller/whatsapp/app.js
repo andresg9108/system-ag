@@ -39,6 +39,8 @@ oApp.create = (oRequest) => {
 		oTemplate.templatepath = `${sPathWhatsappTemp}${sFile}`;
 
 		oApp.jsonTemplates.setTemplate(oTemplate);
+		oResponse.id = oApp.jsonTemplates.getTemplateInsertId();
+
 		oApp.jsonTemplates.save();
 
 		return oApp.useful.getResponse(1, oResponse, 

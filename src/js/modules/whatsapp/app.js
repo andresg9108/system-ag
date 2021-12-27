@@ -8,6 +8,9 @@ $(function(){
 	let sPage = oAppMain.getParameterByName('p');
 
 	switch (sPage) {
+		case 'view':
+			oView.setView();
+			break;
 		case 'create':
 			oCreate.setView();
 			break;

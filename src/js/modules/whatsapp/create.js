@@ -32,13 +32,11 @@ oCreate.create = function(form){
         $.ajax(oAjax)
         .then(function(oResponse){
             if(oResponse.status == 1){
-                console.log(oResponse);
+                let oResp = oResponse.response;
+                let iId = oResp.id;
 
-                $("#createForm")[0].reset();
-                $('html, body').animate({scrollTop:0});
-                oAppMain.disableButton("#createForm #btncreate", false);
                 oMessagewarningWidget.setMessage(oResponse.text.client, 1);
-                oMessagewarningWidget.loadMessage('#message');
+                oAppMain.goTo('modules/whatsapp', `p=view&id=${iId}`);
             }else{
                 $('html, body').animate({scrollTop:0});
                 oAppMain.disableButton("#createForm #btncreate", false);

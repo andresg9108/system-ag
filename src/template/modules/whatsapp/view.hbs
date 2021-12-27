@@ -1,0 +1,47 @@
+<div class="my-keypad">
+  <button onclick="oView.goBack()" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-backspace fa-1x"></span>
+  </button>
+  <button onclick="oAppMain.goTo('', '')" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-home fa-1x"></span>
+  </button>
+</div>
+
+<h2><span class="fab fa-whatsapp fa-1x"></span> {{template.name}}</h2>
+
+<div class="my-keypad">
+  <button class="my-button-icon my-button-simple">
+    <span class="fas fa-edit fa-1x"></span>
+    Editar
+  </button>
+</div>
+
+<div class="my-view1-column-2x">
+  <div class="my-view1-content">
+    <div class="my-view1-title">
+      ID:
+    </div>
+    <div class="my-view1-data">
+      {{template.template_id}}
+    </div>
+  </div>
+  <div class="my-view1-content">
+    <div class="my-view1-title">
+      N&uacute;mero:
+    </div>
+    <div class="my-view1-data">
+      {{template.number}}
+    </div>
+  </div>
+</div>
+
+<div class="my-view1-column-1x">
+  <div class="my-view1-content">
+    <div class="my-view1-title">
+      Nombre:
+    </div>
+    <div class="my-view1-data">
+      {{template.name}}
+    </div>
+  </div>
+</div>
