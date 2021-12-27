@@ -1,6 +1,7 @@
 var oApp = {};
 
 oApp.fs = require('fs');
+oApp.handlebars =  require('handlebars');
 oApp.useful = require('../../../lib/useful.js');
 oApp.globalConstants = require('../../../lib/globalConstants.js');
 oApp.constants = require('./constants.js');
@@ -68,6 +69,20 @@ oApp.getTemplates = (oRequest) => {
 			oResponse.templates = oApp.jsonTemplates.getTemplates();
 		}else{
 			oResponse.template = oApp.jsonTemplates.getTemplateById(iId);
+			oResponse.template.message = '';
+
+			let sTemplatePath = oResponse.template.templatepath;
+			let sPathWhatsappTemp = 'whatsapp/templates/';
+			let sPath = oApp.useful.getPath();
+
+			oApp.useful.createRoute(`${sPath}${sPathWhatsappTemp}`);
+
+			if(oApp.fs.existsSync(`${sPath}${sTemplatePath}`)){
+				oResponse.template.message = oApp.fs.readFileSync(`${sPath}${sTemplatePath}`, 'UTF-8');
+			}
+
+			/*let oTemplate = oApp.handlebars.compile(oResponse.template.message);
+			oResponse.template.message = oTemplate({});*/
 		}
 
 		return oApp.useful.getResponse(1, oResponse, 

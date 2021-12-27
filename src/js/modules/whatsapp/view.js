@@ -25,9 +25,7 @@ oView.setView = function(){
         if(oResponse.status == 1){
             let oResp = oResponse.response;
             let oTemplate = oResp.template;
-
-            console.log(oTemplate);
-
+            
             let oData = {
                 template: oTemplate
             };
