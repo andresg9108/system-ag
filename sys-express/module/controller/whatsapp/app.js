@@ -16,7 +16,8 @@ oApp.create = (oRequest) => {
 		let sName = oRequest.name;
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
-
+		let aTickets = oRequest.tickets;
+		
 		let sPathWhatsappTemp = 'whatsapp/templates/';
 		let sPath = oApp.useful.getPath();
 		let sFile = sName;
@@ -37,6 +38,7 @@ oApp.create = (oRequest) => {
 		let oTemplate = oApp.jsonTemplates.getTemplateStructure();
 		oTemplate.name = sName;
 		oTemplate.number = sNumber;
+		oTemplate.tickets = aTickets;
 		oTemplate.templatepath = `${sPathWhatsappTemp}${sFile}`;
 
 		oApp.jsonTemplates.setTemplate(oTemplate);

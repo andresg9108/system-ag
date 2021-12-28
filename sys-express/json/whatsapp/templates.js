@@ -15,7 +15,8 @@ oApp.template = {
 	name: '',
 	number: '',
 	templatepath: '',
-	template_id: null
+	template_id: null,
+	tickets: []
 }
 
 /*

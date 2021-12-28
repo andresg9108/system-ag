@@ -11,12 +11,13 @@ oCreate.goBack = function(){
 /*
 */
 oCreate.create = function(form){
-	if(oCreate.validateCreate()){
+    if(oCreate.validateCreate()){
         oAppMain.disableButton("#createForm #btncreate", true);
 
         let sName = form.name.value;
         let sNumber = form.number.value;
         let sMessage = form.message.value;
+        let aTickets = oWhatsappticketsWidget.getTickets();
 
         sMessage = encodeURIComponent(sMessage);
 
@@ -26,7 +27,8 @@ oCreate.create = function(form){
             data: {
                 name: sName,
                 number: sNumber,
-                message: sMessage
+                message: sMessage,
+                tickets: aTickets
             }
         }
         $.ajax(oAjax)
@@ -74,5 +76,8 @@ oCreate.validateCreate = function(){
 */
 oCreate.setView = function(){
     let oData = {};
-    oAppMain.loadTemplate('modules/whatsapp/create', '#moduleBody', oData);
+    $.when(oAppMain.loadTemplate('modules/whatsapp/create', '#moduleBody', oData))
+    .done(function(){
+        oWhatsappticketsWidget.load({});
+    });
 }
