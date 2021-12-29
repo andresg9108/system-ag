@@ -18,9 +18,7 @@ oCreate.create = function(form){
         let sNumber = form.number.value;
         let sMessage = form.message.value;
         let aTickets = oWhatsappticketsWidget.getTickets();
-
-        sMessage = encodeURIComponent(sMessage);
-
+        
         let oAjax = {
             url: `${g_sBackEnd}whatsapp/create`,
             type: 'post',

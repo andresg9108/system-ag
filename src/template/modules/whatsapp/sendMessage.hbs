@@ -1,5 +1,5 @@
 <div class="my-keypad">
-  <button onclick="oSend.goBack()" class="my-button-only-icon my-button-simple">
+  <button onclick="sendMessage.goBack()" class="my-button-only-icon my-button-simple">
     <span class="fas fa-backspace fa-1x"></span>
   </button>
   <button onclick="oAppMain.goTo('', '')" class="my-button-only-icon my-button-simple">
@@ -9,7 +9,7 @@
 
 <h2><span class="fas fa-share-square fa-1x"></span> Enviar</h2>
 
-<form id="sendForm" name="sendForm" method="post" onsubmit="return oSend.send(this)">
+<form id="sendForm" name="sendForm" method="post" onsubmit="return sendMessage.send(this)">
   <div class="my-field my-field-column">
     <label for="number">N&uacute;mero:</label>
     <input type="text" class="my-text" id="number" name="number" placeholder="N&uacute;mero" />
@@ -22,7 +22,7 @@
     <span id="errmessage"></span>
   </div>
 
-  <div class="my-keypad">
+  <div id="keypad" data-template="true" class="my-keypad">
     <button id="btnsend" type="submit" class="my-button-icon my-button-simple">
       <span class="fas fa-file-import fa-1x"></span>
       Enviar

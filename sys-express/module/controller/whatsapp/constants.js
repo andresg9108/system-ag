@@ -5,6 +5,10 @@ oApp.useful = require('../../../lib/useful.js');
 
 oApp.constants = {
 
+"MESSAGE_SENT_SUCCESFULLY": [
+	'Message sent succesfully.',
+	'Mensaje enviado con éxito.'
+],
 "CREATED_SUCCESSFULLY": [
 	'The "<1?>" template was created successfully.',
 	'La plantilla <1?> se creó con éxito.'

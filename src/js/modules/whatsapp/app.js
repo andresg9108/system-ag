@@ -14,8 +14,8 @@ $(function(){
 		case 'create':
 			oCreate.setView();
 			break;
-		case 'send':
-			oSend.setView();
+		case 'sendMessage':
+			sendMessage.setView();
 			break;
 		case 'templates':
 			oTemplates.setView();

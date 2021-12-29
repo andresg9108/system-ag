@@ -1,11 +1,36 @@
 var oApp = {};
 
 oApp.fs = require('fs');
+oApp.open = require('open');
 oApp.handlebars =  require('handlebars');
 oApp.useful = require('../../../lib/useful.js');
 oApp.globalConstants = require('../../../lib/globalConstants.js');
 oApp.constants = require('./constants.js');
 oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
+
+/*
+*/
+oApp.sendMessage = (oRequest) => {
+	let oResponse = {};
+
+	try{
+		let sNumber = oRequest.number;
+		let sMessage = oRequest.message;
+
+		sMessage = encodeURIComponent(sMessage);
+
+		oApp.open(`https://api.whatsapp.com/send?phone=${sNumber}&text=${sMessage}`);
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.constants.getConstant('MESSAGE_SENT_SUCCESFULLY'),
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
+	}catch(error){
+		console.log(error);
+		return oApp.useful.getResponse(2, oResponse, 
+			error,
+			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
+	}
+}
 
 /*
 */
@@ -22,7 +47,6 @@ oApp.create = (oRequest) => {
 		let sPath = oApp.useful.getPath();
 		let sFile = sName;
 
-		sMessage = decodeURIComponent(sMessage);
 		sFile = sFile.replace(/[^a-zA-Z0-9áéíóúü ]/g, '');
 		sFile = sFile.trim();
 		
@@ -98,5 +122,6 @@ oApp.getTemplates = (oRequest) => {
 	}
 }
 
+exports.sendMessage = oApp.sendMessage;
 exports.create = oApp.create;
 exports.getTemplates = oApp.getTemplates;

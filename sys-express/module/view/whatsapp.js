@@ -4,6 +4,10 @@ oApp.whatsappController = require('../controller/whatsapp/app.js');
 oApp.app = {};
 
 oApp.load = () => {
+	oApp.app.post('/whatsapp/sendMessage', (req, res) => {
+		res.send(oApp.whatsappController.sendMessage(req.body));
+	});
+
 	oApp.app.post('/whatsapp/create', (req, res) => {
 		res.send(oApp.whatsappController.create(req.body));
 	});
