@@ -7,7 +7,7 @@ oApp.path = '';
 oApp.file = '';
 
 oApp.object = {
-	template_insert_id: null,
+	template_insert_id: 0,
 	templates: []
 }
 
@@ -22,8 +22,9 @@ oApp.template = {
 /*
 */
 oApp.setTemplate = (oTemplate) => {
-	oTemplate.template_id = oApp.object.templates.length+1;
-	oApp.object.template_insert_id = oTemplate.template_id;
+	oApp.object.template_insert_id++;
+
+	oTemplate.template_id = oApp.object.template_insert_id;
 	oApp.object.templates.push(oTemplate);
 }
 

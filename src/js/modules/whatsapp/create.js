@@ -34,6 +34,9 @@ oCreate.create = function(form){
         $.ajax(oAjax)
         .then(function(oResponse){
             if(oResponse.status == 1){
+                oLoadingWidget.load('#createForm #keypad');
+                oAppMain.deactivateSubmitInTheForm("#createForm");
+
                 let oResp = oResponse.response;
                 let iId = oResp.id;
 

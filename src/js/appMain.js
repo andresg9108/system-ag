@@ -75,6 +75,12 @@ oAppMain.getParameterByName = function(sName){
 
 /*
 */
+oAppMain.deactivateSubmitInTheForm = function(sTag){
+    $(sTag).attr("onsubmit", "return false");
+}
+
+/*
+*/
 oAppMain.loadTemplate = function(sRouteTemplate, sTag, oData){
   var sRoute = g_sRouteTemplate+sRouteTemplate+'.hbs';
   var sTemplate = Hbs[sRoute](oData);
