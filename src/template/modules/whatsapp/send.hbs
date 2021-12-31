@@ -16,9 +16,25 @@
   </div>
 
   <div class="my-field my-field-column">
+    <label for="name">Nombre:</label>
+    <input type="text" class="my-text" id="name" name="name" value="{{name}}" placeholder="Nombre" readonly="true"/>
+    <span id="errname"></span>
+  </div>
+
+  <div class="my-field my-field-column">
     <label for="number">N&uacute;mero:</label>
     <input type="text" class="my-text" id="number" name="number" value="{{number}}" placeholder="N&uacute;mero" />
     <span id="errnumber"></span>
+  </div>
+
+  <div class="my-field my-field-column">
+    <label for="message">Mensaje:</label>
+    <textarea id="message" name="message" placeholder="Mensaje" class="my-textarea" readonly="true">{{message}}</textarea>
+    <span id="errmessage"></span>
+  </div>
+
+  <div id="whatsapptickets" data-template="true" class="my-loading1">
+    <span class="fas fa-spinner fa-3x"></span>
   </div>
 
   <br /><br /><br />

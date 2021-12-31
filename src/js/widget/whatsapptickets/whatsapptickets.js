@@ -5,14 +5,31 @@ var oWhatsappticketsWidget = {};
 /*
 */
 oWhatsappticketsWidget.load = function(oTickets){
-	let oData = {};
-    oAppMain.loadTemplate('widget/whatsapptickets/whatsapptickets', '#whatsapptickets', oData);
+	let aTickets = oTickets.tickets;
+
+	let oData = {
+	};
+    $.when(oAppMain.loadTemplate('widget/whatsapptickets/whatsapptickets', '#whatsapptickets', oData))
+    .done(function(){
+    	$.each(aTickets, function(i, v){
+			oWhatsappticketsWidget.addTicket(v);
+		});
+    });
 }
 
 /*
 */
 oWhatsappticketsWidget.addTicket = function(oTicket){
-	let oData = {};
+	let sType = (typeof oTicket.type != 'undefined') ? oTicket.type : '';
+	let sQuestion = (typeof oTicket.question != 'undefined') ? oTicket.question : '';
+	let sValue = (typeof oTicket.value != 'undefined') ? oTicket.value : '';
+
+	console.log(sType);
+
+	let oData = {
+		question: sQuestion,
+		value: sValue
+	};
 	let sRoute = g_sRouteTemplate+'widget/whatsapptickets/ticket.hbs';
 	let sTemplate = Hbs[sRoute](oData);
 

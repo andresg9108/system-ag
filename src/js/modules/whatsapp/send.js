@@ -86,12 +86,21 @@ oSend.setView = function(){
             let oTemplate = oResp.template;
             let sName = oTemplate.name;
             let sNumber = oTemplate.number;
+            let sMessage = oTemplate.message;
+            let aTickets = (typeof oTemplate.tickets != 'undefined') ? oTemplate.tickets : [];
             
             let oData = {
                 name: sName,
-                number: sNumber
+                number: sNumber,
+                message: sMessage
             };
-            oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData);
+            $.when(oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData))
+            .done(function(){
+                let oTickets = {
+                    tickets: aTickets
+                };
+                oWhatsappticketsWidget.load(oTickets);
+            });
         }
     })
     .catch(function(e){
