@@ -8,6 +8,9 @@ $(function(){
 	let sPage = oAppMain.getParameterByName('p');
 
 	switch (sPage) {
+		case 'send':
+			oSend.setView();
+			break;
 		case 'view':
 			oView.setView();
 			break;
@@ -15,7 +18,7 @@ $(function(){
 			oCreate.setView();
 			break;
 		case 'sendMessage':
-			sendMessage.setView();
+			oSendMessage.setView();
 			break;
 		case 'templates':
 			oTemplates.setView();

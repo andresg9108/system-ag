@@ -27,6 +27,7 @@ oView.setView = function(){
             let oTemplate = oResp.template;
             
             let oData = {
+                id: iId,
                 template: oTemplate
             };
             oAppMain.loadTemplate('modules/whatsapp/view', '#moduleBody', oData);

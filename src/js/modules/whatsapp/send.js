@@ -1,17 +1,20 @@
 "use strict";
 
-var oSendMessage = {};
+var oSend = {};
 
 /*
 */
-oSendMessage.goBack = function(){
-	oAppMain.goTo('modules/whatsapp', '');
+oSend.goBack = function(){
+    let sId = oAppMain.getParameterByName('id');
+	oAppMain.goTo('modules/whatsapp', `p=view&id=${sId}`);
 }
 
 /*
 */
-oSendMessage.send = function(form){
-	if(oSendMessage.validateSend()){
+oSend.send = function(form){
+    console.log('Send...');
+
+	/*if(oSend.validateSend()){
         oAppMain.disableButton("#sendForm #btnsend", true);
 
         let sNumber = form.number.value;
@@ -46,27 +49,51 @@ oSendMessage.send = function(form){
             oMessagewarningWidget.setMessage(oMessageMain.UNEXPECTED_ERROR[g_iIdLanguage], 3);
             oMessagewarningWidget.loadMessage('#message');
         });
-	}
+	}*/
 
 	return false;
 }
 
 /*
 */
-oSendMessage.validateSend = function(){
+oSend.validateSend = function(){
 	let sText = '';
 
-    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
+    /*sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #number', '#sendForm #errnumber', sText)){return false;}
     sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}
+    if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}*/
 
     return true;
 }
 
 /*
 */
-oSendMessage.setView = function(){
-    let oData = {};
-    oAppMain.loadTemplate('modules/whatsapp/sendMessage', '#moduleBody', oData);
+oSend.setView = function(){
+    let iId = parseInt(oAppMain.getParameterByName('id'), 10);
+
+    let oAjax = {
+        url: `${g_sBackEnd}whatsapp/templates`,
+        type: 'get',
+        data: {
+            id: iId
+        }
+    }
+    $.ajax(oAjax)
+    .then(function(oResponse){
+        if(oResponse.status == 1){
+            let oResp = oResponse.response;
+            let oTemplate = oResp.template;
+            let sName = oTemplate.name;
+            let sNumber = oTemplate.number;
+            
+            let oData = {
+                name: sName,
+                number: sNumber
+            };
+            oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData);
+        }
+    })
+    .catch(function(e){
+    });
 }
