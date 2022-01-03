@@ -4,14 +4,14 @@ var oSend = {};
 
 /*
 */
-oSend.goBack = function(){
+oSend.goBack = () => {
     let sId = oAppMain.getParameterByName('id');
 	oAppMain.goTo('modules/whatsapp', `p=view&id=${sId}`);
 }
 
 /*
 */
-oSend.send = function(form){
+oSend.send = (form) => {
     console.log('Send...');
 
 	/*if(oSend.validateSend()){
@@ -29,7 +29,7 @@ oSend.send = function(form){
             }
         }
         $.ajax(oAjax)
-        .then(function(oResponse){
+        .then((oResponse) => {
             if(oResponse.status == 1){
                 $("#sendForm")[0].reset();
                 $('html, body').animate({scrollTop:0});
@@ -43,7 +43,7 @@ oSend.send = function(form){
                 oMessagewarningWidget.loadMessage('#message');
             }
         })
-        .catch(function(e){
+        .catch((e) => {
             $('html, body').animate({scrollTop:0});
             oAppMain.disableButton("#sendForm #btnsend", false);
             oMessagewarningWidget.setMessage(oMessageMain.UNEXPECTED_ERROR[g_iIdLanguage], 3);
@@ -56,7 +56,7 @@ oSend.send = function(form){
 
 /*
 */
-oSend.validateSend = function(){
+oSend.validateSend = () => {
 	let sText = '';
 
     /*sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
@@ -69,7 +69,7 @@ oSend.validateSend = function(){
 
 /*
 */
-oSend.setView = function(){
+oSend.setView = () => {
     let iId = parseInt(oAppMain.getParameterByName('id'), 10);
 
     let oAjax = {
@@ -80,7 +80,7 @@ oSend.setView = function(){
         }
     }
     $.ajax(oAjax)
-    .then(function(oResponse){
+    .then((oResponse) => {
         if(oResponse.status == 1){
             let oResp = oResponse.response;
             let oTemplate = oResp.template;
@@ -88,21 +88,23 @@ oSend.setView = function(){
             let sNumber = oTemplate.number;
             let sMessage = oTemplate.message;
             let aTickets = (typeof oTemplate.tickets != 'undefined') ? oTemplate.tickets : [];
-            
+
+            console.log(aTickets);
+
             let oData = {
                 name: sName,
                 number: sNumber,
                 message: sMessage
             };
             $.when(oAppMain.loadTemplate('modules/whatsapp/send', '#moduleBody', oData))
-            .done(function(){
-                let oTickets = {
+            .done(() => {
+                let oQuestios = {
                     tickets: aTickets
                 };
-                oWhatsappticketsWidget.load(oTickets);
+                oWhatsappquestiosWidget.load(oQuestios);
             });
         }
     })
-    .catch(function(e){
+    .catch((e) => {
     });
 }
