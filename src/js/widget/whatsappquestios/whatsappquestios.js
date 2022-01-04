@@ -7,7 +7,7 @@ var oWhatsappquestiosWidget = {};
 oWhatsappquestiosWidget.load = (oQuestios) => {
 	let aTickets = oQuestios.tickets;
 
-	aTickets = getFormatTickets(aTickets);
+	aTickets = oWhatsappquestiosWidget.getFormatTickets(aTickets);
 
 	let oData = {
 		tickets: aTickets
@@ -17,7 +17,30 @@ oWhatsappquestiosWidget.load = (oQuestios) => {
     });
 }
 
-var getFormatTickets = (aTickets) => {
+/*
+*/
+oWhatsappquestiosWidget.getQuestions = () => {
+	let aResponse = [];
+
+	let iIndex = 1;
+	$('#whatsappquestios #questios .row-whatsappquestios').each(function(){
+		let oQuestion = {};
+		let sName = $(this).find('.name-whatsappquestios').val();
+		let sValue = $(this).find('.value-whatsappquestios').val();
+		
+		oQuestion.name = sName;
+		oQuestion.value = sValue;
+
+		aResponse.push(oQuestion);
+		iIndex++
+	});
+
+	return aResponse;
+}
+
+/*
+*/
+oWhatsappquestiosWidget.getFormatTickets = (aTickets) => {
 	$.each(aTickets, (i, v) => {
 
 		// Type selection

@@ -12,20 +12,20 @@ oSend.goBack = () => {
 /*
 */
 oSend.send = (form) => {
-    console.log('Send...');
-
-	/*if(oSend.validateSend()){
+	if(oSend.validateSend()){
         oAppMain.disableButton("#sendForm #btnsend", true);
 
+        let iId = parseInt(oAppMain.getParameterByName('id'), 10);
         let sNumber = form.number.value;
-        let sMessage = form.message.value;
+        let aQuestions = oWhatsappquestiosWidget.getQuestions();
 
         let oAjax = {
-            url: `${g_sBackEnd}whatsapp/sendMessage`,
+            url: `${g_sBackEnd}whatsapp/send`,
             type: 'post',
             data: {
+                id: iId,
                 number: sNumber,
-                message: sMessage
+                questions: aQuestions
             }
         }
         $.ajax(oAjax)
@@ -49,7 +49,7 @@ oSend.send = (form) => {
             oMessagewarningWidget.setMessage(oMessageMain.UNEXPECTED_ERROR[g_iIdLanguage], 3);
             oMessagewarningWidget.loadMessage('#message');
         });
-	}*/
+	}
 
 	return false;
 }
@@ -59,10 +59,8 @@ oSend.send = (form) => {
 oSend.validateSend = () => {
 	let sText = '';
 
-    /*sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
+    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#sendForm #number', '#sendForm #errnumber', sText)){return false;}
-    sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#sendForm #message', '#sendForm #errmessage', sText)){return false;}*/
 
     return true;
 }

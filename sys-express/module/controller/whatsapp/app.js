@@ -10,6 +10,52 @@ oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
 
 /*
 */
+oApp.send = (oRequest) => {
+	let oResponse = {};
+
+	try{
+		let iId = parseInt(oRequest.id);
+		let sNumber = oRequest.number;
+		let aQuestions = oRequest.questions;
+
+		oApp.jsonTemplates.open();
+
+		let oTemplate = oApp.jsonTemplates.getTemplateById(iId);
+		let sTemplatePath = oTemplate.templatepath;
+		let sPathWhatsappTemp = 'whatsapp/templates/';
+		let sPath = oApp.useful.getPath();
+		let sMessage = '';
+
+		oApp.useful.createRoute(`${sPath}${sPathWhatsappTemp}`);
+
+		if(oApp.fs.existsSync(`${sPath}${sTemplatePath}`)){
+			sMessage = oApp.fs.readFileSync(`${sPath}${sTemplatePath}`, 'UTF-8');
+		}
+
+		let oReqMessage = {};
+		aQuestions.forEach((v, i) => {
+			oReqMessage[v.name] = v.value;
+		});
+
+		let oMessageTemplate = oApp.handlebars.compile(sMessage);
+		sMessage = oMessageTemplate(oReqMessage);
+
+		sMessage = encodeURIComponent(sMessage);
+		oApp.open(`https://api.whatsapp.com/send?phone=${sNumber}&text=${sMessage}`);
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.constants.getConstant('MESSAGE_SENT_SUCCESFULLY'),
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
+	}catch(error){
+		console.log(error);
+		return oApp.useful.getResponse(2, oResponse, 
+			error,
+			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
+	}
+}
+
+/*
+*/
 oApp.sendMessage = (oRequest) => {
 	let oResponse = {};
 
@@ -18,7 +64,6 @@ oApp.sendMessage = (oRequest) => {
 		let sMessage = oRequest.message;
 
 		sMessage = encodeURIComponent(sMessage);
-
 		oApp.open(`https://api.whatsapp.com/send?phone=${sNumber}&text=${sMessage}`);
 
 		return oApp.useful.getResponse(1, oResponse, 
@@ -106,9 +151,6 @@ oApp.getTemplates = (oRequest) => {
 			if(oApp.fs.existsSync(`${sPath}${sTemplatePath}`)){
 				oResponse.template.message = oApp.fs.readFileSync(`${sPath}${sTemplatePath}`, 'UTF-8');
 			}
-
-			/*let oTemplate = oApp.handlebars.compile(oResponse.template.message);
-			oResponse.template.message = oTemplate({});*/
 		}
 
 		return oApp.useful.getResponse(1, oResponse, 
@@ -122,6 +164,7 @@ oApp.getTemplates = (oRequest) => {
 	}
 }
 
+exports.send = oApp.send;
 exports.sendMessage = oApp.sendMessage;
 exports.create = oApp.create;
 exports.getTemplates = oApp.getTemplates;
