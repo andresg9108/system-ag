@@ -8,6 +8,9 @@ $(() => {
 	let sPage = oAppMain.getParameterByName('p');
 
 	switch (sPage) {
+		case 'delete':
+			oDelete.setView();
+			break;
 		case 'edit':
 			oEdit.setView();
 			break;

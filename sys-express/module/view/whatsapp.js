@@ -4,6 +4,10 @@ oApp.whatsappController = require('../controller/whatsapp/app.js');
 oApp.app = {};
 
 oApp.load = () => {
+	oApp.app.delete('/whatsapp/delete', (req, res) => {
+		res.send(oApp.whatsappController.delete(req.body));
+	});
+
 	oApp.app.put('/whatsapp/edit', (req, res) => {
 		res.send(oApp.whatsappController.edit(req.body));
 	});

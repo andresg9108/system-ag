@@ -10,6 +10,27 @@ oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
 
 /*
 */
+oApp.delete = (oRequest) => {
+	let oResponse = {};
+
+	try{
+		let iId = parseInt(oRequest.id);
+
+		console.log(iId);
+
+		return oApp.useful.getResponse(1, {}, 
+			oApp.constants.getConstant('THE_CHANGES_WERE_SAVED_SUCCESSFULLY'),
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
+	}catch(error){
+		console.log(error);
+		return oApp.useful.getResponse(2, oResponse, 
+			error,
+			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
+	}
+}
+
+/*
+*/
 oApp.edit = (oRequest) => {
 	let oResponse = {};
 
@@ -208,6 +229,7 @@ oApp.getTemplates = (oRequest) => {
 	}
 }
 
+exports.delete = oApp.delete;
 exports.edit = oApp.edit;
 exports.send = oApp.send;
 exports.sendMessage = oApp.sendMessage;
