@@ -2,12 +2,15 @@
 
 var oApp = {};
 
-$(function(){
+$(() => {
 	oMessagewarningWidget.loadMessage('#message');
 
 	let sPage = oAppMain.getParameterByName('p');
 
 	switch (sPage) {
+		case 'edit':
+			oEdit.setView();
+			break;
 		case 'send':
 			oSend.setView();
 			break;

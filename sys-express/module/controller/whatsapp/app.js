@@ -10,6 +10,50 @@ oApp.jsonTemplates = require('../../../json/whatsapp/templates.js');
 
 /*
 */
+oApp.edit = (oRequest) => {
+	let oResponse = {};
+
+	try{
+		let iId = parseInt(oRequest.id);
+		let sName = oRequest.name;
+		let sNumber = oRequest.number;
+		let sMessage = oRequest.message;
+		let aTickets = oRequest.tickets;
+
+		let sPathWhatsappTemp = 'whatsapp/templates/';
+		let sPath = oApp.useful.getPath();
+
+		oApp.useful.createRoute(`${sPath}${sPathWhatsappTemp}`);
+
+		oApp.jsonTemplates.open();
+
+		let oTemplate = oApp.jsonTemplates.getTemplateById(iId);
+		let sTemplatepath = oTemplate.templatepath;
+
+		oApp.fs.writeFileSync(`${sPath}${sTemplatepath}`, sMessage, 'utf-8');
+
+		oTemplate.name = sName;
+		oTemplate.number = sNumber;
+		oTemplate.tickets = aTickets;
+
+		oApp.jsonTemplates.setTemplate(oTemplate);
+		oResponse.id = oTemplate.template_id;
+
+		oApp.jsonTemplates.save();
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.constants.getConstant('THE_CHANGES_WERE_SAVED_SUCCESSFULLY'),
+			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
+	}catch(error){
+		console.log(error);
+		return oApp.useful.getResponse(2, oResponse, 
+			error,
+			oApp.globalConstants.getConstant('SYSTEM_ERROR'));
+	}
+}
+
+/*
+*/
 oApp.send = (oRequest) => {
 	let oResponse = {};
 
@@ -164,6 +208,7 @@ oApp.getTemplates = (oRequest) => {
 	}
 }
 
+exports.edit = oApp.edit;
 exports.send = oApp.send;
 exports.sendMessage = oApp.sendMessage;
 exports.create = oApp.create;

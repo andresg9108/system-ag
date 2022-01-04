@@ -12,6 +12,10 @@ oApp.constants = {
 "CREATED_SUCCESSFULLY": [
 	'The "<1?>" template was created successfully.',
 	'La plantilla <1?> se creó con éxito.'
+],
+"THE_CHANGES_WERE_SAVED_SUCCESSFULLY": [
+	'The changes were saved successfully.',
+	'Los cambios se guardaron con éxito.'
 ]
 
 };

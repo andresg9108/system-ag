@@ -22,10 +22,22 @@ oApp.template = {
 /*
 */
 oApp.setTemplate = (oTemplate) => {
-	oApp.object.template_insert_id++;
+	if(oTemplate.template_id == null){
+		oApp.object.template_insert_id++;
+		oTemplate.template_id = oApp.object.template_insert_id;
+		oApp.object.templates.push(oTemplate);
+	}else{
+		let bExit = false;
+		let i = 0;
 
-	oTemplate.template_id = oApp.object.template_insert_id;
-	oApp.object.templates.push(oTemplate);
+		while(i < oApp.object.templates.length && !bExit){
+			if(oTemplate.template_id == oApp.object.templates[i].template_id){
+				oApp.object.templates[i] = oTemplate;
+				bExit = true;
+			}
+			i++;
+		}
+	}
 }
 
 /*
@@ -62,7 +74,7 @@ oApp.getTemplateById = (iId) => {
 	while(i < oApp.object.templates.length && !bExit){
 		if(iId == oApp.object.templates[i].template_id){
 			oTemplate = oApp.object.templates[i];
-			bExit = true;6
+			bExit = true;
 		}
 		i++;
 	}
