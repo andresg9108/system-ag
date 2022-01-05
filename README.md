@@ -1,6 +1,6 @@
 # Sistema AG #
 
-## Content ##
+## Contenido ##
 
 1. [Introducción.](#Introduction "Introducción")
 3. [Instalación y configuración.](#InstallationAndConfiguration "Instalación y configuración")
