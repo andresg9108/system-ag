@@ -16,6 +16,10 @@ oApp.constants = {
 "THE_CHANGES_WERE_SAVED_SUCCESSFULLY": [
 	'The changes were saved successfully.',
 	'Los cambios se guardaron con éxito.'
+],
+"TEMPLATE_REMOVED_SUCCESSFULLY": [
+	'Template removed successfully.',
+	'Plantilla eliminada correctamente.'
 ]
 
 };

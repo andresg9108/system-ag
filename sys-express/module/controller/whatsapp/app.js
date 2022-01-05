@@ -16,10 +16,27 @@ oApp.delete = (oRequest) => {
 	try{
 		let iId = parseInt(oRequest.id);
 
-		console.log(iId);
+		let sPathWhatsappTemp = 'whatsapp/templates/';
+		let sPath = oApp.useful.getPath();
 
-		return oApp.useful.getResponse(1, {}, 
-			oApp.constants.getConstant('THE_CHANGES_WERE_SAVED_SUCCESSFULLY'),
+		oApp.useful.createRoute(`${sPath}${sPathWhatsappTemp}`);
+
+		oApp.jsonTemplates.open();
+
+		let oTemplate = oApp.jsonTemplates.getTemplateById(iId);
+		let sTemplatepath = oTemplate.templatepath;
+
+		if(oApp.fs.existsSync(`${sPath}${sTemplatepath}`)){
+			oApp.fs.unlinkSync(`${sPath}${sTemplatepath}`);
+		}
+
+		oApp.jsonTemplates.delete(iId);
+		oResponse.id = iId;
+
+		oApp.jsonTemplates.save();
+
+		return oApp.useful.getResponse(1, oResponse, 
+			oApp.constants.getConstant('TEMPLATE_REMOVED_SUCCESSFULLY'),
 			oApp.globalConstants.getConstant('SUCCESSFUL_REQUEST'));
 	}catch(error){
 		console.log(error);
@@ -81,7 +98,7 @@ oApp.send = (oRequest) => {
 	try{
 		let iId = parseInt(oRequest.id);
 		let sNumber = oRequest.number;
-		let aQuestions = oRequest.questions;
+		let aQuestions = (typeof oRequest.questions != 'undefined') ? oRequest.questions : [];
 
 		oApp.jsonTemplates.open();
 
@@ -151,7 +168,7 @@ oApp.create = (oRequest) => {
 		let sName = oRequest.name;
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
-		let aTickets = oRequest.tickets;
+		let aTickets = (typeof oRequest.tickets != 'undefined') ? oRequest.tickets : [];
 		
 		let sPathWhatsappTemp = 'whatsapp/templates/';
 		let sPath = oApp.useful.getPath();
@@ -159,23 +176,30 @@ oApp.create = (oRequest) => {
 
 		sFile = sFile.replace(/[^a-zA-Z0-9áéíóúü ]/g, '');
 		sFile = sFile.trim();
+		sFile = `${sFile}.hbs`;
 		
 		sPath = `${sPath}${sPathWhatsappTemp}`;
 		oApp.useful.createRoute(sPath);
 
-		oApp.jsonTemplates.open();
+		let i = 2;
+		while(oApp.fs.existsSync(`${sPath}${sFile}`)){
+			sFile = `${i}-${sFile}`;
+			i++;
+		}
 
-		let iTemplatesCount = oApp.jsonTemplates.getTemplatesCount() + 1;
-		sFile = `${iTemplatesCount}- ${sFile}.hbs`;
 		oApp.fs.writeFileSync(`${sPath}${sFile}`, sMessage, 'utf-8');
 
+		oApp.jsonTemplates.open();
+
 		let oTemplate = oApp.jsonTemplates.getTemplateStructure();
+		oTemplate.template_id = null;
 		oTemplate.name = sName;
 		oTemplate.number = sNumber;
 		oTemplate.tickets = aTickets;
 		oTemplate.templatepath = `${sPathWhatsappTemp}${sFile}`;
 
 		oApp.jsonTemplates.setTemplate(oTemplate);
+
 		oResponse.id = oApp.jsonTemplates.getTemplateInsertId();
 
 		oApp.jsonTemplates.save();

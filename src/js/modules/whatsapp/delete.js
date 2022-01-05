@@ -28,12 +28,8 @@ oDelete.delete = () => {
         if(oResponse.status == 1){
             oLoadingWidget.load('#keypad');
 
-            let oResp = oResponse.response;
-            console.log(oResp);
-            /*let iId = oResp.id;
-
             oMessagewarningWidget.setMessage(oResponse.text.client, 1);
-            oAppMain.goTo('modules/whatsapp', `p=view&id=${iId}`);*/
+            oAppMain.goTo('modules/whatsapp', 'p=templates');
         }else{
             $('html, body').animate({scrollTop:0});
             oAppMain.disableButton("#keypad #btndelete", false);

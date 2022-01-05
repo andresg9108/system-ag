@@ -100,6 +100,22 @@ oApp.open = () => {
 
 /*
 */
+oApp.delete = (iId) => {
+	let i = 0;
+	let aTemplates = [];
+
+	while(i < oApp.object.templates.length){
+		if(iId != oApp.object.templates[i].template_id){
+			aTemplates.push(oApp.object.templates[i]);
+		}
+		i++;
+	}
+
+	oApp.object.templates = aTemplates;
+}
+
+/*
+*/
 oApp.save = () => {
 	oApp.fs.writeFileSync(`${oApp.path}${oApp.file}`, JSON.stringify(oApp.object), 'utf-8');
 }
@@ -111,4 +127,5 @@ exports.getTemplatesCount = oApp.getTemplatesCount;
 exports.getTemplates = oApp.getTemplates;
 exports.getTemplateById = oApp.getTemplateById;
 exports.open = oApp.open;
+exports.delete = oApp.delete;
 exports.save = oApp.save;
