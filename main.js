@@ -1,31 +1,11 @@
-var oElectron = require('electron');
-var oElectronApp = oElectron.app;
-var oElectronMenu = oElectron.Menu;
-var oSettings = require('./electron/settings.js');
-var sPath = __dirname + '/web/index.html';
-var oBrowserWindow = null;
+var oApp = {};
 
-// Menu
-var oMenu = oElectronMenu.buildFromTemplate(oSettings.getTemplateMenu());
+oApp.sysElectronApp = require('./sys-electron/app.js');
+oApp.sysExpressApp = require('./sys-express/app.js');
 
-// Context Menu
-var oContextMenu = oElectronMenu.buildFromTemplate(oSettings.getTemplateContextMenu());
+oApp.sysElectronApp.setPath(__dirname);
+oApp.sysElectronApp.run();
 
-// App
-oElectronApp.on('ready', () => {
-  oBrowserWindow = oSettings.getBrowserWindow(sPath);
-  oElectronMenu.setApplicationMenu(oMenu);
-  oBrowserWindow.webContents.on('context-menu', (e, params) => {
-    oContextMenu.popup(oBrowserWindow, params.x, params.y);
-  });
-});
-oElectronApp.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    oElectronApp.quit()
-  }
-});
-oElectronApp.on('activate', () => {
-  if (oBrowserWindow === null) {
-    oBrowserWindow = oSettings.getBrowserWindow(sPath);
-  }
-});
+oApp.sysExpressApp.setPath(__dirname);
+oApp.sysExpressApp.run();
+oApp.sysExpressApp.services();

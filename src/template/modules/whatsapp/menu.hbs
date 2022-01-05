@@ -1,0 +1,27 @@
+<div class="my-keypad">
+  <button onclick="oMenu.goBack()" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-backspace fa-1x"></span>
+  </button>
+  <button onclick="oAppMain.goTo('', '')" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-home fa-1x"></span>
+  </button>
+</div>
+
+<div class="my-menu2">
+  <div id="items">
+
+    <div onclick="oAppMain.goTo('modules/whatsapp', '?p=sendMessage')" data-detail="">
+      <span class="fas fa-share-square fa-1x"></span>
+      <span>Enviar</span>
+    </div>
+    <div onclick="oAppMain.goTo('modules/whatsapp', '?p=create')" data-detail="">
+      <span class="fas fa-folder-plus fa-1x"></span>
+      <span>Crear</span>
+    </div>
+    <div onclick="oAppMain.goTo('modules/whatsapp', '?p=templates')" data-detail="">
+      <span class="fas fa-database fa-1x"></span>
+      <span>Plantillas</span>
+    </div>
+    
+  </div>
+</div>

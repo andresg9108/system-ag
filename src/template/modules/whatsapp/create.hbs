@@ -1,0 +1,48 @@
+<div class="my-keypad">
+  <button onclick="oCreate.goBack()" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-backspace fa-1x"></span>
+  </button>
+  <button onclick="oAppMain.goTo('', '')" class="my-button-only-icon my-button-simple">
+    <span class="fas fa-home fa-1x"></span>
+  </button>
+</div>
+
+<h2><span class="fas fa-folder-plus fa-1x"></span> Crear plantilla</h2>
+
+<form id="createForm" name="createForm" method="post" onsubmit="return oCreate.create(this)">
+
+  <div class="my-form1-title">
+    Informaci&oacute;n:
+  </div>
+  
+  <div class="my-field my-field-column">
+    <label for="name">Nombre:</label>
+    <input type="text" class="my-text" id="name" name="name" placeholder="Nombre" />
+    <span id="errname"></span>
+  </div>
+
+  <div class="my-field my-field-column">
+    <label for="number">N&uacute;mero:</label>
+    <input type="text" class="my-text" id="number" name="number" placeholder="N&uacute;mero" />
+    <span id="errnumber"></span>
+  </div>
+
+  <div class="my-field my-field-column">
+    <label for="message">Mensaje:</label>
+    <textarea id="message" name="message" placeholder="Mensaje" class="my-textarea"></textarea>
+    <span id="errmessage"></span>
+  </div>
+
+  <div id="whatsapptickets" data-template="true" class="my-loading1">
+    <span class="fas fa-spinner fa-3x"></span>
+  </div>
+
+  <br /><br /><br />
+  <div id="keypad" data-template="true" class="my-keypad">
+    <button id="btncreate" type="submit" class="my-button-icon my-button-simple">
+      <span class="fas fa-folder-plus fa-1x"></span>
+      Crear
+    </button>
+  </div>
+
+</form>

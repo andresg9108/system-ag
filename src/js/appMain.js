@@ -1,5 +1,8 @@
 "use strict";
 
+var g_sPort = '65000'
+var g_sBackEnd = `http://localhost:${g_sPort}/`;
+
 var g_iIdLanguage = 1; // English = 0, Spanish = 1
 var g_sRouteTemplate = 'src/template/';
 var g_iApp = 2; // 0: Web; 1: Android; 2: Electron;
@@ -61,6 +64,20 @@ oAppMain.goTo_w_app = function(sUrl){
   }
 }
 
+/*
+*/
+oAppMain.getParameterByName = function(sName){
+    sName = sName.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + sName + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+/*
+*/
+oAppMain.deactivateSubmitInTheForm = function(sTag){
+    $(sTag).attr("onsubmit", "return false");
+}
 
 /*
 */

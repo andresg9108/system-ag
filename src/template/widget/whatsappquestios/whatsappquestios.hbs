@@ -1,0 +1,25 @@
+<div class="my-form1-title">
+  Preguntas:
+</div>
+
+<div id="questios">
+  {{#each tickets}}
+    <div class="row row-whatsappquestios">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="my-field my-field-column">
+          <label>{{question}} (Nombre: {{name}})</label>
+          <input type="hidden" value="{{name}}" class="name-whatsappquestios" />
+          {{#if type_selection}}
+            <select class="my-selectionmenu value-whatsappquestios">
+              {{#each type_selection_value}}
+                <option value="{{value}}">{{value}}</option>
+              {{/each}}
+            </select>
+          {{else}}
+            <input type="text" class="my-text value-whatsappquestios" value="{{value}}" placeholder="Valor" />
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
