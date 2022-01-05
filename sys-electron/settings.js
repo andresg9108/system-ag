@@ -37,7 +37,7 @@ oApp.getBrowserWindow = (sPath) => {
 
 	// oApp.BrowserWindow.setMenu(null);
 	oApp.BrowserWindow.maximize();
-	oApp.BrowserWindow.webContents.openDevTools()
+	oApp.BrowserWindow.webContents.openDevTools();
 
 	return oApp.BrowserWindow;
 }

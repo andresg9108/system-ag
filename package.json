@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "electronVersion": "1.0.0",
   "main": "./main.js",
-  "description": "Andrés González System.",
+  "description": "Este software tiene como objetivo la creación de varios módulos que permitan automatizar tareas repetitivas en un computador.",
   "scripts": {
     "start": "grunt",
     "launch": "electron .",
@@ -26,6 +26,8 @@
   "license": "MIT",
   "homepage": "https://github.com/andresg9108/system-ag",
   "devDependencies": {
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
     "grunt": "^1.4.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-handlebars": "^3.0.0",
@@ -38,8 +40,6 @@
   },
   "dependencies": {
     "body-parser": "^1.19.1",
-    "electron": "^16.0.4",
-    "electron-builder": "^22.14.5",
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "jquery": "^3.6.0",

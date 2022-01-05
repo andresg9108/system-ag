@@ -8,10 +8,10 @@
 npm i
 ~~~
 
-3. Vaya al archivo "./electron/settings.js" en la raíz del proyecto y elimine la siguiente línea.
+3. Vaya al archivo "./sys-electron/settings.js" y elimine la siguiente línea.
 
 ~~~
-oBrowserWindow.webContents.openDevTools();
+oApp.BrowserWindow.webContents.openDevTools();
 ~~~
 
 4. Modificaremos los archivos javascript u otros que necesiten realizar un cambio para la producción.
@@ -22,13 +22,7 @@ oBrowserWindow.webContents.openDevTools();
 npm run prepare
 ~~~
 
-6. Eliminamos la carpeta “node_modules” y ejecutamos el siguiente comando que se encargará de cargar esta misma carpeta pero solo con las dependencias de producción. 
-
-~~~
-npm i --production
-~~~
-
-6. En la raíz del proyecto nos quedamos con siguientes archivos.
+6. En la raíz del proyecto nos quedamos con los siguientes archivos.
 
 * main.js
 * package.json

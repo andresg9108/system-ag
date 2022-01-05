@@ -139,7 +139,7 @@ oApp.templateMenu = [
 					{
 						"label": "Linkedin",
 						"click": () => {
-							oApp.electron.shell.openExternal('https://co.linkedin.com/in/andres-gonzalez-53a768106');
+							oApp.electron.shell.openExternal('https://co.linkedin.com/in/andrés-gonzález-53a768106');
 						}
 					},
 					{
