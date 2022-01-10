@@ -28,6 +28,9 @@ oTemplates.setView = function(){
                 templates: aTemplates
             };
             oAppMain.loadTemplate('modules/whatsapp/templates', '#moduleBody', oData);
+        }else{
+            oMessagewarningWidget.setMessage(oResponse.text.client, 2);
+            oAppMain.goTo('modules/whatsapp', ``);
         }
     })
     .catch(function(e){
