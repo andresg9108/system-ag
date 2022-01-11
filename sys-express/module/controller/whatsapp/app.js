@@ -56,7 +56,8 @@ oApp.edit = (oRequest) => {
 		let sName = oRequest.name;
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
-		let aTickets = oRequest.tickets;
+		let iTicketsid = parseInt(oRequest.ticketsid);
+		let aTickets = (typeof oRequest.tickets != 'undefined') ? oRequest.tickets : [];
 
 		let sPathWhatsappTemp = 'whatsapp/templates/';
 		let sPath = oApp.useful.getPath();
@@ -72,6 +73,7 @@ oApp.edit = (oRequest) => {
 
 		oTemplate.name = sName;
 		oTemplate.number = sNumber;
+		oTemplate.tickets_id = iTicketsid;
 		oTemplate.tickets = aTickets;
 
 		oApp.jsonTemplates.setTemplate(oTemplate);
@@ -168,6 +170,7 @@ oApp.create = (oRequest) => {
 		let sName = oRequest.name;
 		let sNumber = oRequest.number;
 		let sMessage = oRequest.message;
+		let iTicketsid = parseInt(oRequest.ticketsid);
 		let aTickets = (typeof oRequest.tickets != 'undefined') ? oRequest.tickets : [];
 		
 		let sPathWhatsappTemp = 'whatsapp/templates/';
@@ -195,6 +198,7 @@ oApp.create = (oRequest) => {
 		oTemplate.template_id = null;
 		oTemplate.name = sName;
 		oTemplate.number = sNumber;
+		oTemplate.tickets_id = iTicketsid;
 		oTemplate.tickets = aTickets;
 		oTemplate.templatepath = `${sPathWhatsappTemp}${sFile}`;
 
