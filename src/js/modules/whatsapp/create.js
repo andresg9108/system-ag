@@ -17,7 +17,9 @@ oCreate.create = function(form){
         let sName = form.name.value;
         let sNumber = form.number.value;
         let sMessage = form.message.value;
-        let aTickets = oWhatsappticketsWidget.getTickets();
+        let oTickets = oWhatsappticketsWidget.getTickets();
+        let iTicketsid = oTickets.ticketsid;
+        let aTickets = oTickets.tickets;
         
         let oAjax = {
             url: `${g_sBackEnd}whatsapp/create`,
@@ -26,6 +28,7 @@ oCreate.create = function(form){
                 name: sName,
                 number: sNumber,
                 message: sMessage,
+                ticketsid: iTicketsid,
                 tickets: aTickets
             }
         }
