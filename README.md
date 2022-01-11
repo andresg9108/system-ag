@@ -20,4 +20,4 @@ El primer paso es agregar la siguiente variable de entorno en nuestro sistema op
 
 Puedes descargar el instalador para Windows usando el siguiente enlace.
 
-* [Instalador para Windows.](https://mega.nz/file/QB1GFDRJ#gb8vm9tmPny1U5jvprFqWsydg2bwEwXJ_RG9NMXaRcY "Instalador para Windows")
+* [Instalador para Windows.](https://mega.nz/file/tM1DwCqJ#2GOo0a7hBDbHykGSB36ywPfGwhhJhoixrMB49klul5Q "Instalador para Windows")
