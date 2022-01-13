@@ -102,8 +102,6 @@ oEdit.setView = () => {
             let tickets_id = parseInt(oTemplate.tickets_id);
             let aTickets = (typeof oTemplate.tickets != 'undefined') ? oTemplate.tickets : [];
 
-            console.log(oTemplate);
-
             let oData = {
                 name: sName,
                 number: sNumber,

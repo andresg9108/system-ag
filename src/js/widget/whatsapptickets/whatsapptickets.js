@@ -30,6 +30,8 @@ oWhatsappticketsWidget.addTicket = (oTicket) => {
 	let sValue = (typeof oTicket.value != 'undefined') ? oTicket.value : '';
 	let sName = (typeof oTicket.name != 'undefined') ? oTicket.name : '';
 
+	let aType = oWhatsappticketsWidget.getTypeArray(sType);
+
 	if(sName == ''){
 		iTicketsId++;
 		$('#whatsapptickets #tickets').attr('data-tickets-id', iTicketsId);
@@ -37,6 +39,7 @@ oWhatsappticketsWidget.addTicket = (oTicket) => {
 	}
 
 	let oData = {
+		type: aType,
 		question: sQuestion,
 		value: sValue,
 		name: sName
@@ -92,4 +95,28 @@ oWhatsappticketsWidget.getTickets = () => {
 	oResponse.tickets = aTickets;
 
 	return oResponse;
+}
+
+/*
+*/
+oWhatsappticketsWidget.getTypeArray = (sType) => {
+	let oMessageTypes = {
+		"text": ["Text","Texto"],
+		"selection": ["Selection","Selección"]
+	};
+
+	let aType = [
+		{
+			value: 'text',
+			name: oMessageTypes.text[g_iIdLanguage],
+			selected: (sType == 'text')
+		},
+		{
+			value: 'selection',
+			name: oMessageTypes.selection[g_iIdLanguage],
+			selected: (sType == 'selection')
+		}
+	];
+
+	return aType;
 }

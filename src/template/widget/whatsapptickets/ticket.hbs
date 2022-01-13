@@ -3,8 +3,9 @@
     <div class="my-field my-field-column">
       <label>Tipo:</label>
       <select class="my-selectionmenu type-whatsapptickets">
-        <option value="text">Texto</option>
-        <option value="selection">Selecci&oacute;n</option>
+        {{#each type}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+        {{/each}}
       </select>
     </div>
   </div>
