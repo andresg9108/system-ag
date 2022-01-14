@@ -23,7 +23,7 @@
 
   <div class="my-field my-field-column">
     <label for="number">N&uacute;mero:</label>
-    <input type="text" class="my-text" id="number" name="number" placeholder="N&uacute;mero" />
+    <input type="text" class="my-text" id="number" name="number" placeholder="+57 + Número" />
     <span id="errnumber"></span>
   </div>
 
@@ -46,3 +46,25 @@
   </div>
 
 </form>
+
+<br /><br />
+<h2><span class="fas fa-question-circle"></span> Ayuda</h2>
+<br />
+
+<p class="my-p my-justify">Completa el formulario y dale al botón crear. Recuerda que el número debe empezar por el código del país y no es necesario especificarlo ya que este se puede agregar al momento de enviar la plantilla. Ej: +57 + Número.</p>
+
+<br />
+<h3><span class="fas fa-desktop"></span> Entradas</h3>
+<br />
+
+<p class="my-p my-justify">Puedes crear la plantilla sin entradas pero estas nos permitirán cambiar una parte del mensaje antes de enviarlo. Para agregar una entrada lo haremos con en botón “Agregar entrada”, inmediatamente después de presionar el botón se nos cargarán 3 campos que se explican a continuación, pero antes debemos entender como funciona, en el campo “Valor” vemos el nombre de nuestra entrada encerrada entre paréntesis, puede ser v1, v2, v3, etc, este nombre es muy importante porque es el que colocaremos en el lugar del mensaje que queremos que se cambie, pero siempre teniendo en cuenta que este debe estar encerrado entre llaves, así &#123;&#123;v1&#125;&#125;. Ej: Este es mi primer mensaje. Atentamente: &#123;&#123;v1&#125;&#125;</p>
+
+<p class="my-p my-justify"><span style="font-weight: bold">1) Tipo:</span> Nos permite seleccionar el tipo de entrada que queremos.</p>
+
+<p class="my-p my-justify"><span style="font-weight: bold">- Texto:</span> Reemplazará lo que se encuentra en el campo “Valor” en el lugar del mensaje que especificamos. El campo “Valor” se puede dejar en blanco ya que en el momento de enviar la plantilla podremos ingresarlo, a menos que quieras establecer un valor por defecto.</p>
+
+<p class="my-p my-justify"><span style="font-weight: bold">- Selección:</span> Este tipo de entrada hace lo mismo que la entrada tipo “Texto” pero tomará lo que coloquemos en el campo “Valor” y creará una lista desplegable con varias opciones. Las opciones que queremos que aparezcan en nuestra lista desplegable deberán estar separadas por un símbolo de punto y coma (;) en el campo “Valor”. Ej: Mi moto;Mi carro;Mi ruta</p>
+
+<p class="my-p my-justify"><span style="font-weight: bold">2) Pregunta:</span> Es un simple texto que nos permitirá recordar que debemos agregar en el campo antes de enviar la plantilla. Ej: ¿Cuál es el nombre del cliente?</p>
+
+<p class="my-p my-justify"><span style="font-weight: bold">3) Valor:</span> Como ya vimos, el campo “Valor” será dependiente del tipo de entrada que hayamos seleccionado y en muchos casos se podrá dejar en blanco.</p>

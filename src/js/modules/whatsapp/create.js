@@ -68,8 +68,6 @@ oCreate.validateCreate = function(){
 
     sText = oMessage.YOU_MUST_ADD_A_NAME[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#createForm #name', '#createForm #errname', sText)){return false;}
-    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#createForm #number', '#createForm #errnumber', sText)){return false;}
     sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#createForm #message', '#createForm #errmessage', sText)){return false;}
 
