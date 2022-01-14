@@ -17,7 +17,9 @@ oCreate.create = function(form){
         let sName = form.name.value;
         let sNumber = form.number.value;
         let sMessage = form.message.value;
-        let aTickets = oWhatsappticketsWidget.getTickets();
+        let oTickets = oWhatsappticketsWidget.getTickets();
+        let iTicketsid = oTickets.ticketsid;
+        let aTickets = oTickets.tickets;
         
         let oAjax = {
             url: `${g_sBackEnd}whatsapp/create`,
@@ -26,6 +28,7 @@ oCreate.create = function(form){
                 name: sName,
                 number: sNumber,
                 message: sMessage,
+                ticketsid: iTicketsid,
                 tickets: aTickets
             }
         }
@@ -65,8 +68,6 @@ oCreate.validateCreate = function(){
 
     sText = oMessage.YOU_MUST_ADD_A_NAME[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#createForm #name', '#createForm #errname', sText)){return false;}
-    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#createForm #number', '#createForm #errnumber', sText)){return false;}
     sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#createForm #message', '#createForm #errmessage', sText)){return false;}
 

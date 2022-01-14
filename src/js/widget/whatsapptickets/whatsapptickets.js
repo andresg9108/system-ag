@@ -4,14 +4,18 @@ var oWhatsappticketsWidget = {};
 
 /*
 */
-oWhatsappticketsWidget.load = function(oTickets){
+oWhatsappticketsWidget.load = (oTickets) => {
+	let iTicketsid = oTickets.ticketsid;
 	let aTickets = oTickets.tickets;
+
+
 
 	let oData = {
 	};
     $.when(oAppMain.loadTemplate('widget/whatsapptickets/whatsapptickets', '#whatsapptickets', oData))
-    .done(function(){
-    	$.each(aTickets, function(i, v){
+    .done(() => {
+    	$('#whatsapptickets #tickets').attr('data-tickets-id', iTicketsid);
+    	$.each(aTickets, (i, v) => {
 			oWhatsappticketsWidget.addTicket(v);
 		});
     });
@@ -19,17 +23,23 @@ oWhatsappticketsWidget.load = function(oTickets){
 
 /*
 */
-oWhatsappticketsWidget.addTicket = function(oTicket){
+oWhatsappticketsWidget.addTicket = (oTicket) => {
 	let iTicketsId = parseInt($('#whatsapptickets #tickets').attr('data-tickets-id'));
-	iTicketsId++;
-	$('#whatsapptickets #tickets').attr('data-tickets-id', iTicketsId);
-
 	let sType = (typeof oTicket.type != 'undefined') ? oTicket.type : '';
 	let sQuestion = (typeof oTicket.question != 'undefined') ? oTicket.question : '';
 	let sValue = (typeof oTicket.value != 'undefined') ? oTicket.value : '';
-	let sName = `v${iTicketsId}`;
+	let sName = (typeof oTicket.name != 'undefined') ? oTicket.name : '';
+
+	let aType = oWhatsappticketsWidget.getTypeArray(sType);
+
+	if(sName == ''){
+		iTicketsId++;
+		$('#whatsapptickets #tickets').attr('data-tickets-id', iTicketsId);
+		sName = `v${iTicketsId}`;
+	}
 
 	let oData = {
+		type: aType,
 		question: sQuestion,
 		value: sValue,
 		name: sName
@@ -37,13 +47,32 @@ oWhatsappticketsWidget.addTicket = function(oTicket){
 	let sRoute = g_sRouteTemplate+'widget/whatsapptickets/ticket.hbs';
 	let sTemplate = Hbs[sRoute](oData);
 
-	$('#whatsapptickets #tickets').append(sTemplate);
+	$.when($('#whatsapptickets #tickets').append(sTemplate))
+	.done(() => {
+		oWhatsappticketsWidget.loadEvents();
+	});
 }
 
 /*
 */
-oWhatsappticketsWidget.getTickets = function(){
-	let aResponse = [];
+oWhatsappticketsWidget.loadEvents = () => {
+	$('#whatsapptickets #tickets .row-whatsapptickets')
+	.children('.value-column-whatsapptickets')
+	.children('div')
+	.children('div')
+	.children('.delete-whatsapptickets')
+	.on('click', function(){
+		$(this).parents('.row-whatsapptickets').remove();
+	});
+}
+
+/*
+*/
+oWhatsappticketsWidget.getTickets = () => {
+	let oResponse = {};
+
+	let iTicketsId = parseInt($('#whatsapptickets #tickets').attr('data-tickets-id'));
+	let aTickets = [];
 
 	let iIndex = 1;
 	$('#whatsapptickets #tickets .row-whatsapptickets').each(function(){
@@ -58,9 +87,36 @@ oWhatsappticketsWidget.getTickets = function(){
 		oTicket.value = sValue;
 		oTicket.name = sName;
 
-		aResponse.push(oTicket);
+		aTickets.push(oTicket);
 		iIndex++
 	});
 
-	return aResponse;
+	oResponse.ticketsid = iTicketsId;
+	oResponse.tickets = aTickets;
+
+	return oResponse;
+}
+
+/*
+*/
+oWhatsappticketsWidget.getTypeArray = (sType) => {
+	let oMessageTypes = {
+		"text": ["Text","Texto"],
+		"selection": ["Selection","Selección"]
+	};
+
+	let aType = [
+		{
+			value: 'text',
+			name: oMessageTypes.text[g_iIdLanguage],
+			selected: (sType == 'text')
+		},
+		{
+			value: 'selection',
+			name: oMessageTypes.selection[g_iIdLanguage],
+			selected: (sType == 'selection')
+		}
+	];
+
+	return aType;
 }

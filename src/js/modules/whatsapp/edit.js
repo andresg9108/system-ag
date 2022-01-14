@@ -19,7 +19,9 @@ oEdit.edit = (form) => {
         let sName = form.name.value;
         let sNumber = form.number.value;
         let sMessage = form.message.value;
-        let aTickets = oWhatsappticketsWidget.getTickets();
+        let oTickets = oWhatsappticketsWidget.getTickets();
+        let iTicketsid = oTickets.ticketsid;
+        let aTickets = oTickets.tickets;
 
         let oAjax = {
             url: `${g_sBackEnd}whatsapp/edit`,
@@ -29,6 +31,7 @@ oEdit.edit = (form) => {
                 name: sName,
                 number: sNumber,
                 message: sMessage,
+                ticketsid: iTicketsid,
                 tickets: aTickets
             }
         }
@@ -68,8 +71,6 @@ oEdit.validateEdit = () => {
 
     sText = oMessage.YOU_MUST_ADD_A_NAME[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#editForm #name', '#editForm #errname', sText)){return false;}
-    sText = oMessage.YOU_MUST_ADD_A_NUMBER[g_iIdLanguage];
-    if(!oValidateMain.validateTextNotEmpty('#editForm #number', '#editForm #errnumber', sText)){return false;}
     sText = oMessage.YOU_MUST_ADD_A_MESSAGE[g_iIdLanguage];
     if(!oValidateMain.validateTextNotEmpty('#editForm #message', '#editForm #errmessage', sText)){return false;}
 
@@ -96,6 +97,7 @@ oEdit.setView = () => {
             let sName = oTemplate.name;
             let sNumber = oTemplate.number;
             let sMessage = oTemplate.message;
+            let tickets_id = parseInt(oTemplate.tickets_id);
             let aTickets = (typeof oTemplate.tickets != 'undefined') ? oTemplate.tickets : [];
 
             let oData = {
@@ -106,6 +108,7 @@ oEdit.setView = () => {
             $.when(oAppMain.loadTemplate('modules/whatsapp/edit', '#moduleBody', oData))
             .done(() => {
                 let oTickets = {
+                    ticketsid: tickets_id,
                     tickets: aTickets
                 };
                 oWhatsappticketsWidget.load(oTickets);

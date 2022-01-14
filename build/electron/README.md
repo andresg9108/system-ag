@@ -30,12 +30,13 @@ npm run prepare
 
 7. En cuanto a los directorios nos quedaremos con los siguientes. 
 
-* web/
-* src/
+* electron-builder/
 * node_modules/
+* splash/
+* src/
 * sys-electron/
 * sys-express/
-* electron-builder/
+* web/
 
 8. También borraremos "src/sass" y dentro de "src/js" y "src/template" solo quedará la carpeta "dist".
 

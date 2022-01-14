@@ -86,7 +86,7 @@ oSend.setView = () => {
             let sNumber = oTemplate.number;
             let sMessage = oTemplate.message;
             let aTickets = (typeof oTemplate.tickets != 'undefined') ? oTemplate.tickets : [];
-
+            
             let oData = {
                 name: sName,
                 number: sNumber,

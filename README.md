@@ -1,6 +1,6 @@
 # Sistema AG #
 
-## Content ##
+## Contenido ##
 
 1. [Introducción.](#Introduction "Introducción")
 3. [Instalación y configuración.](#InstallationAndConfiguration "Instalación y configuración")
@@ -20,4 +20,4 @@ El primer paso es agregar la siguiente variable de entorno en nuestro sistema op
 
 Puedes descargar el instalador para Windows usando el siguiente enlace.
 
-* [Instalador para Windows.](https://mega.nz/file/QB1GFDRJ#gb8vm9tmPny1U5jvprFqWsydg2bwEwXJ_RG9NMXaRcY "Instalador para Windows")
+* [Instalador para Windows.](https://mega.nz/file/EEcwRZZJ#PGkY1HJURTKgSA7yxT9XarupX3gKNY9K1mp38T0l-80 "Instalador para Windows")
