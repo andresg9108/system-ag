@@ -1,11 +1,6 @@
-var oApp = {};
+require('shelljs/global');
 
-oApp.sysElectronApp = require('./sys-electron/app.js');
-oApp.sysExpressApp = require('./sys-express/app.js');
+var oChildProcess = require('child_process');
+var oSp1 = oChildProcess.fork(`./server.js`);
 
-oApp.sysElectronApp.setPath(__dirname);
-oApp.sysElectronApp.run();
-
-oApp.sysExpressApp.setPath(__dirname);
-oApp.sysExpressApp.run();
-oApp.sysExpressApp.services();
+exec('npm run grunt');

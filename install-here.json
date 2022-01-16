@@ -1,8 +1,8 @@
 {
   "name": "manyp-ag",
   "version": "3.0.0",
-  "ignore": "main.js;server.js;processpy.log;README.md",
+  "ignore": "processpy.log;README.md",
   "ignoreOverwrite": "",
-  "ignorePath": "sys-express;grunt;pages;pageTemplates;src",
+  "ignorePath": "grunt;pages;pageTemplates;src",
   "checkVersion": true
 }
