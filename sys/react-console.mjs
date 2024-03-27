@@ -1,4 +1,4 @@
-require('shelljs/global');
+import shell from 'shelljs';
 
 const predefinedSettings = {
     developer: true, 
@@ -6,8 +6,8 @@ const predefinedSettings = {
 };
 var settings = {};
 
-process.on('message', msg => {
-    settings = { ...predefinedSettings, ...msg.settings ? msg.settings : {} };
+process.on('message', (msg) => {
+    settings = { ...predefinedSettings, ...(msg.settings ? msg.settings : {}) };
     runInConsole();
 });
 
@@ -16,6 +16,6 @@ const runInConsole = () => {
         process.env.BROWSER = 'none';
     }
     if(settings.developer){
-        exec('npm run react-start');
+        shell.exec('react-scripts start');
     }
 }
